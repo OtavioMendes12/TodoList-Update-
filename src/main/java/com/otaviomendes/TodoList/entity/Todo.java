@@ -19,7 +19,12 @@ public class Todo {
     @NotBlank
     private String descricao;
     private boolean realizado;
+<<<<<<< HEAD
     private int prioridade;
+=======
+    @Enumerated(EnumType.STRING) // Adiciona esta anotação para mapear o enum como String no banco de dados
+    private Prioridade prioridade;
+>>>>>>> 432f47c (Fix)
 
     private String lembrete;
 
@@ -27,7 +32,11 @@ public class Todo {
 
     }
 
+<<<<<<< HEAD
     public Todo(Long id, @NotBlank String nome, @NotBlank String descricao, boolean realizado, int prioridade, String lembrete) {
+=======
+    public Todo(Long id, @NotBlank String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete) {
+>>>>>>> 432f47c (Fix)
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -36,7 +45,11 @@ public class Todo {
         this.lembrete = lembrete;
     }
 
+<<<<<<< HEAD
     public Todo(String nome, String descricao, boolean realizado, int prioridade, String lembrete) {
+=======
+    public Todo(String nome, String descricao, boolean realizado, Prioridade prioridade, String lembrete) {
+>>>>>>> 432f47c (Fix)
         this.nome = nome;
         this.descricao = descricao;
         this.realizado = realizado;
@@ -78,11 +91,19 @@ public class Todo {
         this.realizado = realizado;
     }
 
+<<<<<<< HEAD
     public int getPrioridade() {
         return prioridade;
     }
 
     public void setPrioridade(int prioridade) {
+=======
+    public Prioridade getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+>>>>>>> 432f47c (Fix)
         this.prioridade = prioridade;
     }
 
