@@ -1,9 +1,6 @@
 package com.otaviomendes.TodoList;
 
-<<<<<<< HEAD
-=======
 import com.otaviomendes.TodoList.entity.Prioridade;
->>>>>>> 432f47c (Fix)
 import com.otaviomendes.TodoList.entity.Todo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +13,7 @@ class TodoListApplicationTests {
 	private WebTestClient webTestClient;
 	@Test
 	void testCreateTodoSuccess() {
-<<<<<<< HEAD
-		var todo = new Todo("todo 1", "desc todo 1", false, 1, "as 19h");
-=======
 		var todo = new Todo("todo 1", "desc todo 1", false, Prioridade.Alta, "as 19h");
->>>>>>> 432f47c (Fix)
 		webTestClient
 				.post()
 				.uri("/todos")
