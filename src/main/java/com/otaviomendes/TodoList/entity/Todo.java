@@ -92,6 +92,13 @@ public class Todo {
         this.prioridade = prioridade;
     }
 
+    public TipoTodo getTipoTodo(){
+        return tipoTodo;
+    }
+
+    public void setTipoTodo(TipoTodo tipoTodo){
+        this.tipoTodo = tipoTodo;
+    }
     public String getLembrete() {
         return lembrete;
     }
