@@ -22,26 +22,31 @@ public class Todo {
     @Enumerated(EnumType.STRING) // Adiciona esta anotação para mapear o enum como String no banco de dados
     private Prioridade prioridade;
 
+
+    @Enumerated(EnumType.STRING)
+    private TipoTodo tipoTodo;
     private String lembrete;
 
     public Todo() {
 
     }
 
-    public Todo(Long id, @NotBlank String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete) {
+    public Todo(Long id, @NotBlank String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete, TipoTodo tipoTodo) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.realizado = realizado;
         this.prioridade = prioridade;
         this.lembrete = lembrete;
+        this.tipoTodo= tipoTodo;
     }
 
-    public Todo(String nome, String descricao, boolean realizado, Prioridade prioridade, String lembrete) {
+    public Todo(String nome, String descricao, boolean realizado, Prioridade prioridade, String lembrete,TipoTodo tipoTodo) {
         this.nome = nome;
         this.descricao = descricao;
         this.realizado = realizado;
         this.prioridade = prioridade;
+        this.tipoTodo = tipoTodo;
         this.lembrete = lembrete;
     }
 
