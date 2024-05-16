@@ -104,7 +104,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.seu.pacote.MainClass</mainClass>
+							<mainClass>com.otaviomendes.TodoList.TodoListApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
