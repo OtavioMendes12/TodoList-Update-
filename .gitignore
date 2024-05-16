@@ -1,9 +1,10 @@
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
+# Ignore tudo dentro do diretório target
+/target/*
+
+# Exceto o arquivo JAR específico
+!/target/TodoList-0.0.1-SNAPSHOT.jar
 ### STS ###
 .apt_generated
 .classpath
