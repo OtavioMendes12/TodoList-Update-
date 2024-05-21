@@ -39,7 +39,7 @@ public class TodoServiceIntegrationTest {
 		List<Todo> result = todoService.create(todo);
 		assertNotNull(result);
 		assertEquals(1, result.size());
-		assertEquals(Prioridade.Media, result.get(0).getPrioridade());
+		assertEquals(Prioridade.Alta, result.get(0).getPrioridade());
 
 		verify(todoRepository).save(todo);
 		verify(todoRepository).findAll();
@@ -50,7 +50,7 @@ public class TodoServiceIntegrationTest {
 		Todo todo1 = new Todo();
 		todo1.setPrioridade(Prioridade.Alta);
 		Todo todo2 = new Todo();
-		todo2.setPrioridade(Prioridade.Alta);
+		todo2.setPrioridade(Prioridade.Media);
 		when(todoRepository.findAll()).thenReturn(Arrays.asList(todo2, todo1));
 
 		List<Todo> result = todoService.list();

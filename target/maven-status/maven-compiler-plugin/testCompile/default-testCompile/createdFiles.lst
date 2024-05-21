@@ -1,1 +1,3 @@
-com/otaviomendes/TodoList/TodoListApplicationTests.class
+com/otaviomendes/TodoList/unit/TodoServiceUnitTest.class
+com/otaviomendes/TodoList/unit/TodoServiceUnitTest$1.class
+com/otaviomendes/TodoList/integration/TodoServiceIntegrationTest.class

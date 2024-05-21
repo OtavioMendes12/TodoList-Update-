@@ -51,9 +51,9 @@ public class TodoServiceUnitTest {
         Todo dataTipoTodo = new Todo();
         dataTipoTodo.setTipoTodo(TipoTodo.Data);
         Todo prazoTipoTodo = new Todo();
-        prazoTipoTodo.setTipoTodo(TipoTodo.Data);
+        prazoTipoTodo.setTipoTodo(TipoTodo.Prazo);
         Todo livreTipoTodo = new Todo();
-        livreTipoTodo.setTipoTodo(TipoTodo.Data);
+        livreTipoTodo.setTipoTodo(TipoTodo.Livre);
         List<Todo> todos = Arrays.asList(livreTipoTodo, prazoTipoTodo, dataTipoTodo);
         todos.sort(Comparator.comparing(todo -> {
             switch (todo.getTipoTodo()) {
@@ -69,8 +69,8 @@ public class TodoServiceUnitTest {
 
         }));
         assertEquals(TipoTodo.Data, todos.get(0).getTipoTodo());
-        assertEquals(TipoTodo.Prazo, todos.get(0).getTipoTodo());
-        assertEquals(TipoTodo.Livre, todos.get(0).getTipoTodo());
+        assertEquals(TipoTodo.Prazo, todos.get(1).getTipoTodo());
+        assertEquals(TipoTodo.Livre, todos.get(2).getTipoTodo());
 
     }
 }
