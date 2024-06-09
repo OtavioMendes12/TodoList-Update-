@@ -1,5 +1,6 @@
 package com.otaviomendes.TodoList.controller;
 
+import com.otaviomendes.TodoList.entity.Prioridade;
 import com.otaviomendes.TodoList.entity.Todo;
 import com.otaviomendes.TodoList.service.TodoService;
 import java.util.List;
@@ -44,5 +45,10 @@ public class TodoController {
     @DeleteMapping("{id}")
     List<Todo> delete(@PathVariable Long id) {
         return todoService.delete(id);
+    }
+    @PutMapping("/{taskId}/priority/{priority}")
+    public ResponseEntity<Todo> updateTaskPriority(@PathVariable Long taskId, @PathVariable Prioridade priority) {
+        Todo updatedTask = todoService.updateTaskPriority(taskId, priority);
+        return ResponseEntity.ok(updatedTask);
     }
 }

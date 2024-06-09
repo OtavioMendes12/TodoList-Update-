@@ -1,8 +1,10 @@
 package com.otaviomendes.TodoList.service;
+import com.otaviomendes.TodoList.entity.Prioridade;
 import org.springframework.data.domain.Sort;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.otaviomendes.TodoList.entity.Todo;
@@ -56,6 +58,16 @@ public class TodoService {
         todoRepository.deleteById(id);
         return list();
 
+    }
+    public Todo updateTaskPriority(Long taskId, Prioridade priority) {
+        Optional<Todo> optionalTask = todoRepository.findById(taskId);
+        if (optionalTask.isPresent()) {
+            Todo task = optionalTask.get();
+            task.setPrioridade(priority);
+            return todoRepository.save(task);
+        } else {
+            throw new IllegalArgumentException("Tarefa não encontrada com o ID: " + taskId);
+        }
     }
 
 }

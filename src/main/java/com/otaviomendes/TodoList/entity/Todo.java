@@ -7,8 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -25,7 +28,8 @@ public class Todo {
     @Enumerated(EnumType.STRING) // Adiciona esta anotação para mapear o enum como String no banco de dados
     private Prioridade prioridade;
 
-
+    @FutureOrPresent(message = "A data prevista de execução deve ser igual ou superior à data atual.")
+    private LocalDate dueDate;
     @Enumerated(EnumType.STRING)
     private TipoTodo tipoTodo;
     private String lembrete;
@@ -34,7 +38,7 @@ public class Todo {
 
     }
 
-    public Todo(Long id, String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete, TipoTodo tipoTodo) {
+    public Todo(Long id, String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete, TipoTodo tipoTodo, LocalDate dueDate) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -42,6 +46,7 @@ public class Todo {
         this.prioridade = prioridade;
         this.lembrete = lembrete;
         this.tipoTodo= tipoTodo;
+        this.dueDate = dueDate;
     }
 
     public Todo(String nome, String descricao, boolean realizado, Prioridade prioridade, String lembrete,TipoTodo tipoTodo) {
