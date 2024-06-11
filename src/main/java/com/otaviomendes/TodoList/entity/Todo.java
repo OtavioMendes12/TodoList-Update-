@@ -22,7 +22,7 @@ public class Todo {
     @NotBlank
     private String descricao;
     private boolean realizado;
-    @Enumerated(EnumType.STRING) // Adiciona esta anotação para mapear o enum como String no banco de dados
+    @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
 
