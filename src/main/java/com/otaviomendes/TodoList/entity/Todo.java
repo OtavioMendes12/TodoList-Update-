@@ -1,23 +1,10 @@
 package com.otaviomendes.TodoList.entity;
 
-import jakarta.persistence.*;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-
-import java.time.LocalDate;
-
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Getter;
-@Data
+
 @Entity
 @Table(name = "todos")
 public class Todo {
@@ -26,27 +13,23 @@ public class Todo {
         BAIXA, MEDIA, ALTA
     }
 
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Getter
     private String nome;
-    @Getter
     private String descricao;
-    @Getter
     private boolean realizado;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonProperty("data_prevista")
     private Date dataPrevista;
 
-    @Getter
     @Enumerated(EnumType.STRING)
-    private Prioridade prioridade;
+    private Priority prioridade;
 
     // getters and setters
 
-    public Date ç() {
+    public Date getDataPrevista() {
         return dataPrevista;
     }
 
@@ -54,20 +37,40 @@ public class Todo {
         this.dataPrevista = dataPrevista;
     }
 
-    public void setPrioridade(Prioridade prioridade) {
+    public Priority getPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(Priority prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public boolean isRealizado() {
+        return realizado;
     }
 
     public void setRealizado(boolean realizado) {

@@ -1,24 +1,15 @@
 package com.otaviomendes.TodoList.service;
-import com.otaviomendes.TodoList.entity.Prioridade;
 import org.springframework.data.domain.Sort;
-import java.util.ArrayList;
-import java.util.Comparator;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.otaviomendes.TodoList.entity.Todo;
 import com.otaviomendes.TodoList.repository.TodoRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TodoService {
