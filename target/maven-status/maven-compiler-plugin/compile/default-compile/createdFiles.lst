@@ -2,7 +2,10 @@ com/otaviomendes/TodoList/entity/Prioridade.class
 com/otaviomendes/TodoList/service/TodoService.class
 com/otaviomendes/TodoList/TodoListApplication.class
 com/otaviomendes/TodoList/controller/TodoController.class
-com/otaviomendes/TodoList/service/TodoService$1.class
+com/otaviomendes/TodoList/config/WebConfig.class
+com/otaviomendes/TodoList/service/TodoService$ResourceNotFoundException.class
+com/otaviomendes/TodoList/entity/Todo$Priority.class
+com/otaviomendes/TodoList/config/WebConfig$1.class
 com/otaviomendes/TodoList/entity/Todo.class
 com/otaviomendes/TodoList/repository/TodoRepository.class
 com/otaviomendes/TodoList/entity/TipoTodo.class

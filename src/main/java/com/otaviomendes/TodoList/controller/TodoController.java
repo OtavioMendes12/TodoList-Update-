@@ -1,54 +1,92 @@
 package com.otaviomendes.TodoList.controller;
 
-import com.otaviomendes.TodoList.entity.Prioridade;
 import com.otaviomendes.TodoList.entity.Todo;
 import com.otaviomendes.TodoList.service.TodoService;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
+@CrossOrigin(origins = "https://lab-projeto-software-5ykwn6cqn.vercel.app/todo")
 public class TodoController {
-    @Autowired
-    private TodoService todoService;
 
+    private final TodoService todoService;
+
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
+
+    /**
+     * Creates a new Todo item.
+     *
+     * @param todo the Todo item to create
+     * @return the created Todo item
+     */
     @PostMapping
-    ResponseEntity<List<Todo>> create(@Valid @RequestBody Todo todo) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(todoService.create(todo));
+    public ResponseEntity<Todo> create(@RequestBody Todo todo) {
+        Todo createdTodo = todoService.create(todo);
+        return new ResponseEntity<>(createdTodo, HttpStatus.CREATED);
     }
 
+    /**
+     * Lists all Todo items.
+     *
+     * @return a list of all Todo items
+     */
     @GetMapping
-    List<Todo> list() {
-        return todoService.list();
+    public ResponseEntity<List<Todo>> list() {
+        List<Todo> todos = todoService.list();
+        return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
-    List<Todo> update(@PathVariable Long id, @RequestBody Todo todo) {
-        return todoService.update(id, todo);
+    /**
+     * Updates an existing Todo item.
+     *
+     * @param todo the Todo item to update
+     * @return the updated Todo item
+     */
+    @PutMapping
+    public ResponseEntity<Todo> update(@RequestBody Todo todo) {
+        try {
+            Todo updatedTodo = todoService.update(todo);
+            return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
+        } catch (TodoService.ResourceNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
-    @DeleteMapping("{id}")
-    List<Todo> delete(@PathVariable Long id) {
-        return todoService.delete(id);
+    /**
+     * Deletes a Todo item by id.
+     *
+     * @param id the id of the Todo item to delete
+     * @return a ResponseEntity with the status of the deletion
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        try {
+            todoService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (TodoService.ResourceNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-    @PutMapping("/{taskId}/priority/{priority}")
-    public ResponseEntity<Todo> updateTaskPriority(@PathVariable Long taskId, @PathVariable Prioridade priority) {
-        Todo updatedTask = todoService.updateTaskPriority(taskId, priority);
-        return ResponseEntity.ok(updatedTask);
+
+    /**
+     * Checks the health of the service.
+     *
+     * @return a ResponseEntity with the health status of the service
+     */
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        boolean isHealthy = todoService.isHealthy();
+        if (isHealthy) {
+            return ResponseEntity.ok("Aplicação está operacional");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Aplicação com problemas");
+        }
     }
 }

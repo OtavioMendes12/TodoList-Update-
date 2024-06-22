@@ -13,48 +13,64 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
-@Entity
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.Getter;
 @Data
+@Entity
 @Table(name = "todos")
 public class Todo {
+
+    public enum Priority {
+        BAIXA, MEDIA, ALTA
+    }
+
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Getter
     private String nome;
-    @NotBlank
+    @Getter
     private String descricao;
+    @Getter
     private boolean realizado;
-    @Enumerated(EnumType.STRING) // Adiciona esta anotação para mapear o enum como String no banco de dados
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private Date dataPrevista;
+
+    @Getter
+    @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
-    @FutureOrPresent(message = "A data prevista de execução deve ser igual ou superior à data atual.")
-    private LocalDate dueDate;
-    @Enumerated(EnumType.STRING)
-    private TipoTodo tipoTodo;
-    private String lembrete;
+    // getters and setters
 
-    public Todo() {
-
+    public Date ç() {
+        return dataPrevista;
     }
 
-    public Todo(Long id, String nome, @NotBlank String descricao, boolean realizado, Prioridade prioridade, String lembrete, TipoTodo tipoTodo, LocalDate dueDate) {
+    public void setDataPrevista(Date dataPrevista) {
+        this.dataPrevista = dataPrevista;
+    }
+
+    public void setPrioridade(Prioridade prioridade) {
+        this.prioridade = prioridade;
+    }
+
+    public void setId(Long id) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.realizado = realizado;
-        this.prioridade = prioridade;
-        this.lembrete = lembrete;
-        this.tipoTodo= tipoTodo;
-        this.dueDate = dueDate;
     }
 
-    public Todo(String nome, String descricao, boolean realizado, Prioridade prioridade, String lembrete,TipoTodo tipoTodo) {
+    public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public void setRealizado(boolean realizado) {
         this.realizado = realizado;
-        this.prioridade = prioridade;
-        this.tipoTodo = tipoTodo;
-        this.lembrete = lembrete;
     }
 }

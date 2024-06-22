@@ -3,5 +3,6 @@
 /Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/service/TodoService.java
 /Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/entity/Todo.java
 /Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/controller/TodoController.java
+/Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/config/WebConfig.java
 /Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/entity/TipoTodo.java
 /Users/otaviomendes/Documents/GitHub/TodoList-Update-/src/main/java/com/otaviomendes/TodoList/TodoListApplication.java
