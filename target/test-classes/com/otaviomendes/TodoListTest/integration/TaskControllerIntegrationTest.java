@@ -1,0 +1,93 @@
+package com.otaviomendes.TodoListTest.integration;
+import com.otaviomendes.TodoList.entity.Todo;
+import com.otaviomendes.TodoList.repository.TodoRepository;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Date;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class TaskControllerIntegrationTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+
+    private TodoRepository todoRepository;
+
+    @BeforeEach
+    void setUp() {
+        todoRepository.deleteAll();
+    }
+
+    @Test
+    void testCreateTodo() throws Exception {
+        mockMvc.perform(post("/todos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"nome\":\"Teste\",\"descricao\":\"Descrição do teste\",\"realizado\":false,\"dataPrevista\":\"01/01/2024\",\"prioridade\":\"ALTA\"}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].nome").value("Teste"));
+    }
+
+    @Test
+    void testListTodos() throws Exception {
+        Todo todo = new Todo();
+        todo.setNome("Teste");
+        todo.setDescricao("Descrição do teste");
+        todo.setRealizado(false);
+        todo.setDataPrevista(new Date());
+        todo.setPrioridade(Todo.Priority.ALTA);
+        todoRepository.save(todo);
+
+        mockMvc.perform(get("/todos")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].nome").value("Teste"));
+    }
+
+    @Test
+    void testUpdateTodo() throws Exception {
+        Todo todo = new Todo();
+        todo.setNome("Teste");
+        todo.setDescricao("Descrição do teste");
+        todo.setRealizado(false);
+        todo.setDataPrevista(new Date());
+        todo.setPrioridade(Todo.Priority.ALTA);
+        todo = todoRepository.save(todo);
+
+        String updatedTodoJson = String.format(
+                "{\"id\":%d,\"nome\":\"Teste Atualizado\",\"descricao\":\"Descrição atualizada\",\"realizado\":true,\"dataPrevista\":\"01/01/2024\",\"prioridade\":\"BAIXA\"}",
+                todo.getId()
+        );
+
+        mockMvc.perform(put("/todos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updatedTodoJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].nome").value("Teste Atualizado"));
+    }
+
+    @Test
+    void testDeleteTodo() throws Exception {
+        Todo todo = new Todo();
+        todo.setNome("Teste");
+        todo.setDescricao("Descrição do teste");
+        todo.setRealizado(false);
+        todo.setDataPrevista(new Date());
+        todo.setPrioridade(Todo.Priority.ALTA);
+        todo = todoRepository.save(todo);
+
+        mockMvc.perform(delete("/todos/{id}", todo.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
+    }
+}

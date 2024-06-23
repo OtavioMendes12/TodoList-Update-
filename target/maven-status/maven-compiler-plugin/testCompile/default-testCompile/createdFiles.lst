@@ -1,0 +1,6 @@
+com/otaviomendes/TodoListTest/unit/controller/TaskControllerTest.class
+com/otaviomendes/TodoListTest/unit/service/TodoServiceTest.class
+com/otaviomendes/TodoListTest/unit/repository/TaskRepositoryTest.class
+com/otaviomendes/TodoListTest/mock/TaskMock.class
+com/otaviomendes/TodoListTest/TodoListTestApplicationTests.class
+com/otaviomendes/TodoListTest/integration/TaskControllerIntegrationTest.class
