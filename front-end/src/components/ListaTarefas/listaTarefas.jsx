@@ -16,7 +16,7 @@ export default function DataTable() {
   const columns = [
     { field: "nome", headerName: "Tarefas", width: 200 },
     { field: "descricao", headerName: "Descrição", width: 200 },
-    { field: "dataPrevista", headerName: "Data", width: 200 },
+    { field: "data_prevista", headerName: "Data", width: 200 },
     { field: "prioridade", headerName: "Prioridade", width: 200 },
     {
       field: "realizado",

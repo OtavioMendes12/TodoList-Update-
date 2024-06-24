@@ -32,7 +32,7 @@ export default function Home() {
       <div style={{height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', fontFamily: 'Calibri'}} >
         <Typography variant="h4">TODO LIST</Typography>
         <Typography variant="h6">{formatDate(dateTime)} {formatTime(dateTime)}</Typography>
-        <Typography variant="h4">OTÁVIO MENDES</Typography>
+        <Typography variant="h6">OTÁVIO MENDES</Typography>
       </div>
       <ListaTarefas />
     </>
