@@ -17,18 +17,19 @@ export default function Home() {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h2"
           component="h1"
           gutterBottom
           style={{
-            color: "#000000", 
-            marginBottom: "40px", 
+            color: "green", 
+            marginRight: '60%', 
             fontFamily: "'Roboto', sans-serif", 
             fontWeight: "bold", 
-            fontSize: "50px"
+            fontSize: "90px"
           }}
         >
           TODO LIST
+          <br />
           OTÁVIO MENDES
         </Typography>
       </div>

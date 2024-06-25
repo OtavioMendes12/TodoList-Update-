@@ -26,8 +26,8 @@ export default function DataTable() {
   const columns = [
     { field: "nome", headerName: "Tarefas", width: 200 },
     { field: "descricao", headerName: "Descrição", width: 200 },
-    { field: "data_prevista", headerName: "Data", width: 200 },
-    { field: "prioridade", headerName: "Prioridade", width: 200 },
+    { field: "data_prevista", headerName: "Data de previsao", width: 200 },
+    { field: "prioridade", headerName: "Prioridade da tarefa", width: 200 },
     {
       field: "realizado",
       headerName: "Realizado",
@@ -48,10 +48,10 @@ export default function DataTable() {
             style={{ marginRight: 16 }}
             color="error"
           >
-            <DeleteIcon sx={{ color: 'grey' }} />
+            <DeleteIcon sx={{ color: 'black' }} />
           </Button>
           <Button onClick={() => handleUpdate(params.row)}>
-            {params.row.realizado ? <DoNotDisturbIcon sx={{ color: 'red' }} /> : <AddTaskIcon sx={{ color: 'green' }} alt='realizado' />}
+            {params.row.realizado ? <DoNotDisturbIcon sx={{ color: 'green' }} /> : <AddTaskIcon sx={{ color: '#fffff' }} alt='realizado' />}
           </Button>
           <Button onClick={() => handleEditClick(params.row)}>
             <EditIcon />
@@ -164,6 +164,7 @@ export default function DataTable() {
             name="nome"
             label="Nome"
             type="text"
+            sx={{color: 'white'}}
             fullWidth
             value={editTodo.nome}
             onChange={handleEditChange}
@@ -205,10 +206,10 @@ export default function DataTable() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenEditDialog(false)} color="primary">
-            Cancelar
+            ABORTAR
           </Button>
           <Button onClick={handleEditSubmit} color="primary">
-            Salvar
+            SALVAR
           </Button>
         </DialogActions>
       </Dialog>

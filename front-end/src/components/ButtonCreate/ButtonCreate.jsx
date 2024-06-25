@@ -74,7 +74,7 @@ export default function NestedModal() {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>ADD TAREFA</Button>
+      <Button variant="contained"  sx={{backgroundColor:'#fffff'}} onClick={handleOpen}>ADD TAREFA</Button>
       <Modal
         open={open}
         onClose={handleClose}
