@@ -46,7 +46,6 @@ const deleteTodo = async (id) => {
   }
 };
 
-// Exporta todas as funções para serem usadas em outros lugares do aplicativo
 export {
   createTodo,
   getTodos,

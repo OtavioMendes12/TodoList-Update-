@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import Stack from '@mui/material/Stack';
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { createTodo } from "../../service/TarefasService"; // Certifique-se de que o caminho esteja correto
@@ -58,7 +59,7 @@ export default function NestedModal() {
 
     try {
       await createTodo(todo);
-      
+      // Limpar os campos e fechar o modal após a criação bem-sucedida
       setNome("");
       setDescricao("");
       setPrioridade(null);
@@ -73,7 +74,7 @@ export default function NestedModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>ADICIONAR TAREFA</Button>
+      <Button variant="contained" onClick={handleOpen}>Contained</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -118,7 +119,7 @@ export default function NestedModal() {
           />
           <TextField
             id="date"
-            label="data_prevista"
+            label="Data prevista"
             sx={{ mb: 2 }}
             value={data_prevista}
             onChange={(e) => setData(e.target.value)}
