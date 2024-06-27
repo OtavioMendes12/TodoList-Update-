@@ -28,7 +28,7 @@ export default function Home() {
             fontSize: "90px"
           }}
         >
-          TODO LIST
+         
           <br />
           TODO LIST
         </Typography>
