@@ -30,7 +30,7 @@ export default function Home() {
         >
           TODO LIST
           <br />
-          OTÁVIO MENDES
+          TODO LIST
         </Typography>
       </div>
       <ListaTarefas />
